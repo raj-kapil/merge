@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import Svg, { Path } from "react-native-svg";
 import { Article } from "../data/articles";
 import { useStore } from "../store";
 import { theme } from "../theme";
@@ -8,7 +9,7 @@ import { SwipeCard } from "../components/SwipeCard";
 type Props = { onOpen: (a: Article) => void };
 
 export const Discover: React.FC<Props> = ({ onOpen }) => {
-  const { feed, dark, save, show } = useStore();
+  const { feed, dark, save } = useStore();
   const t = theme(dark);
   const [index, setIndex] = useState(0);
   const [passed, setPassed] = useState<string[]>([]);
@@ -21,13 +22,18 @@ export const Discover: React.FC<Props> = ({ onOpen }) => {
   const total = filtered.length;
 
   const handlePass = () => { if (!current) return; setPassed((p) => [...p, current.id]); setIndex((i) => i + 1); };
-  const handleSave = () => { if (!current) return; save(current); show(`Saved · ${current.source}`); setIndex((i) => i + 1); };
+  const handleSave = () => { if (!current) return; save(current); setIndex((i) => i + 1); };
 
   return (
     <View style={styles.wrap}>
       <View style={styles.subBar}>
-        <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
-          <View style={styles.liveDot} />
+        <View style={{ flexDirection: "row", alignItems: "center", gap: 7 }}>
+          <Svg width={13} height={13} viewBox="0 0 24 24">
+            <Path
+              d="M12 2C12 7.5 7.5 12 2 12C7.5 12 12 16.5 12 22C12 16.5 16.5 12 22 12C16.5 12 12 7.5 12 2Z"
+              fill="#10B981"
+            />
+          </Svg>
           <Text style={[styles.liveText, { color: t.text }]}>LIVE FEED</Text>
         </View>
         <Text style={[styles.counter, { color: t.sub }]}>{total === 0 ? "0 of 0" : `${Math.min(index + 1, total)} of ${total}`}</Text>

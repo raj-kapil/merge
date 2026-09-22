@@ -31,7 +31,7 @@ export const Settings: React.FC = () => {
             <Text style={{ color: t.text, fontWeight: "700", fontSize: 13 }}>Clear</Text>
           </TouchableOpacity>
         </Row>
-        <Text style={[styles.version, { color: t.sub }]}>TechFlip · v1.0.0</Text>
+        <Text style={[styles.version, { color: t.sub }]}>Merge · v1.0.0</Text>
       </ScrollView>
     </View>
   );

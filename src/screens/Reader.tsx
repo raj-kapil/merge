@@ -42,7 +42,19 @@ export const Reader: React.FC<Props> = ({ article, onBack }) => {
         <Text style={[styles.sourceName, { color: t.sub }]}>{article.source}</Text>
         <View style={{ flexDirection: "row", gap: 4 }}>
           <TouchableOpacity onPress={handleToggleSave} hitSlop={10} style={styles.iconBtn}>
-            <Svg width={20} height={20} viewBox="0 0 24 24"><Path d="M6 4h12v16l-6-4-6 4V4z" stroke={isSaved ? "#10B981" : t.text} fill={isSaved ? "#10B981" : "none"} strokeWidth={2} strokeLinejoin="round" /></Svg>
+            <Svg width={20} height={20} viewBox="0 0 24 24">
+              <Path
+                d="M5 3.5C5 2.67 5.67 2 6.5 2H17.5C18.33 2 19 2.67 19 3.5V21.5L12 17.5L5 21.5V3.5Z"
+                stroke={isSaved ? "#10B981" : t.text}
+                fill={isSaved ? "#10B981" : "none"}
+                strokeWidth={2}
+                strokeLinejoin="round"
+              />
+              <Path
+                d="M12 7C12 8.4 11.1 9.5 10 9.5C11.1 9.5 12 10.6 12 12C12 10.6 12.9 9.5 14 9.5C12.9 9.5 12 8.4 12 7Z"
+                fill={isSaved ? (dark ? "#141A1F" : "#fff") : t.text}
+              />
+            </Svg>
           </TouchableOpacity>
           <TouchableOpacity onPress={handleCopy} hitSlop={10} style={styles.iconBtn}>
             <Svg width={20} height={20} viewBox="0 0 24 24">

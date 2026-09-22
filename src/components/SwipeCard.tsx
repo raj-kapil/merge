@@ -63,7 +63,7 @@ export const SwipeCard: React.FC<Props> = ({ article, isTop, dark, onPass, onSav
 };
 
 const styles = StyleSheet.create({
-  card: { position: "absolute", top: 0, left: 0, right: 0, bottom: 0, borderRadius: 24, borderWidth: 1, overflow: "hidden" },
+  card: { position: "absolute", top: 0, left: 0, right: 0, bottom: 28, borderRadius: 24, borderWidth: 1, overflow: "hidden" },
   chipRow: { flexDirection: "row", alignItems: "center", gap: 10, paddingHorizontal: 24, paddingTop: 22 },
   sourceDot: { width: 28, height: 28, borderRadius: 8, alignItems: "center", justifyContent: "center" },
   sourceInitial: { color: "#fff", fontWeight: "800", fontSize: 13 },

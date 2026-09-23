@@ -38,16 +38,6 @@ jobs:
             --non-interactive \
             --output=./techflip-android.apk
 
-      - name: Upload Android APK to Release
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./techflip-android.apk
-          asset_name: techflip-android.apk
-          asset_content_type: application/vnd.android.package-archive
-
       # --- iOS IPA ---
       - name: Build iOS IPA (local)
         run: |
@@ -57,12 +47,13 @@ jobs:
             --non-interactive \
             --output=./techflip-ios.ipa
 
-      - name: Upload iOS IPA to Release
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # --- UPLOAD BOTH ASSETS TO THE RELEASE ---
+      - name: Upload Artifacts to Release
+        uses: softprops/action-gh-release@v2
         with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./techflip-ios.ipa
-          asset_name: techflip-ios.ipa
-          asset_content_type: application/octet-stream
+          # This will attach the specified files to the release that triggered the workflow.
+          # Use 'fail_on_unmatched_files: true' to ensure the workflow fails if a file is missing.
+          files: |
+            ./merge-android.apk
+            ./merge-ios.ipa
+          fail_on_unmatched_files: true

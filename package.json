@@ -1,31 +1,64 @@
 {
-  "name": "techflip",
+  "name": "merge",
   "version": "1.0.0",
   "main": "index.ts",
   "dependencies": {
     "@expo/metro-runtime": "~57.0.16",
+    "@react-native-async-storage/async-storage": "2.2.0",
     "expo": "~57.0.24",
     "expo-clipboard": "~57.0.2",
     "expo-haptics": "~57.0.3",
     "expo-linear-gradient": "~57.0.2",
     "expo-status-bar": "~57.0.1",
     "react": "19.2.3",
+    "react-dom": "19.2.3",
     "react-native": "0.86.3",
     "react-native-gesture-handler": "~2.32.0",
     "react-native-reanimated": "4.5.1",
+    "react-native-safe-area-context": "~5.7.0",
     "react-native-svg": "15.15.4",
+    "react-native-web": "^0.21.2",
     "react-native-worklets": "0.10.1"
   },
   "devDependencies": {
     "@types/react": "~19.2.2",
     "babel-preset-expo": "^57.0.12",
+    "electron": "^44.4.4",
+    "electron-builder": "^26.15.3",
+    "tsx": "^4.19.3",
     "typescript": "~6.0.3"
   },
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "build:web": "expo export -p web",
+    "desktop:dev": "npm run build:web && electron electron-main.js",
+    "build:dmg": "npm run build:web && electron-builder --mac dmg",
+    "test": "npx tsx --test __tests__/**/*.test.ts"
   },
+  "build": {
+    "appId": "com.raj.merge",
+    "productName": "Merge",
+    "directories": {
+      "output": "dist-electron"
+    },
+    "extraMetadata": {
+      "main": "electron-main.js"
+    },
+    "files": [
+      "dist/**/*",
+      "electron-main.js"
+    ],
+    "mac": {
+      "category": "public.app-category.news",
+      "icon": "assets/icon.png",
+      "target": [
+        "dmg"
+      ]
+    }
+  },
+  "license": "UNLICENSED",
   "private": true
 }

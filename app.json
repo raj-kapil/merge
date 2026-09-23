@@ -1,15 +1,20 @@
 {
   "expo": {
-    "name": "techflip",
-    "slug": "techflip",
+    "name": "Merge",
+    "slug": "merge",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.raj.merge",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
+      "package": "com.raj.merge",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -24,6 +29,12 @@
     },
     "plugins": [
       "expo-status-bar"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "e59389ad-e891-491e-8c66-d5cf25f1ed03"
+      }
+    },
+    "owner": "sush-sush"
   }
 }

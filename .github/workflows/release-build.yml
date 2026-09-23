@@ -1,0 +1,63 @@
+name: Build and Attach Artifacts on Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write  # Required to upload assets to the release
+
+jobs:
+  build:
+    runs-on: macos-latest  # macOS is required for iOS local builds
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Expo and EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Install dependencies
+        run: npm install
+
+      # --- ANDROID APK ---
+      - name: Build Android APK (local)
+        run: |
+          eas build --local \
+            --platform android \
+            --profile preview \
+            --non-interactive \
+            --output=./merge-android.apk
+
+      # --- iOS IPA ---
+      - name: Build iOS IPA (local)
+        run: |
+          eas build --local \
+            --platform ios \
+            --profile preview \
+            --non-interactive \
+            --output=./merge-ios.ipa
+
+      # --- UPLOAD BOTH ASSETS TO THE RELEASE ---
+      - name: Upload Artifacts to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ./merge-android.apk
+            ./merge-ios.ipa
+          fail_on_unmatched_files: true

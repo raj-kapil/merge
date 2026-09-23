@@ -1,10 +1,14 @@
 import React from "react";
-import { Platform, View, StyleSheet } from "react-native";
+import { Platform, View, StyleSheet, useWindowDimensions } from "react-native";
 
 const IS_WEB = Platform.OS === "web";
 
 export const DeviceFrame: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  if (!IS_WEB) return <>{children}</>;
+  const { width, height } = useWindowDimensions();
+  const showFrame = IS_WEB && width > 500 && height > 750;
+
+  if (!showFrame) return <>{children}</>;
+
   return (
     <View style={styles.stage}>
       <View style={styles.phone}>

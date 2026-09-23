@@ -1,6 +1,7 @@
 import "react-native-gesture-handler";
 import React, { useState } from "react";
-import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
+import { StatusBar, StyleSheet, View } from "react-native";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { StoreProvider, useStore } from "./src/store";
 import { DeviceFrame } from "./src/components/DeviceFrame";
@@ -47,13 +48,15 @@ const Shell: React.FC = () => {
 
 export default function App() {
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <StoreProvider>
-        <DeviceFrame>
-          <Shell />
-        </DeviceFrame>
-      </StoreProvider>
-    </GestureHandlerRootView>
+    <SafeAreaProvider>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <StoreProvider>
+          <DeviceFrame>
+            <Shell />
+          </DeviceFrame>
+        </StoreProvider>
+      </GestureHandlerRootView>
+    </SafeAreaProvider>
   );
 }
 

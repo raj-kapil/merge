@@ -1,0 +1,20 @@
+name: Build on Push
+
+on:
+  push:
+    branches: ['main']
+
+jobs:
+  build_android:
+    name: Build Android App
+    type: build
+    params:
+      platform: android
+      profile: preview
+
+  build_ios:
+    name: Build iOS App
+    type: build
+    params:
+      platform: ios
+      profile: preview

@@ -8,6 +8,8 @@ node_modules/
 dist/
 web-build/
 expo-env.d.ts
+.eas/credentials/
+.eas/secrets/
 
 # Electron / Desktop builds
 dist-electron/
@@ -42,10 +44,15 @@ yarn-error.*
 # TypeScript
 *.tsbuildinfo
 
+# AI assistants
+.claude/
+.cursor/
+
 # IDEs & Editors
 .idea/
 *.iml
 .vscode/*
+*.swp
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json

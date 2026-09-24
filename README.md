@@ -16,8 +16,7 @@
     <a href="#-about-merge">About</a> •
     <a href="#-key-features">Features</a> •
     <a href="#-installing-on-android">Install on Android</a> •
-    <a href="#-project-architecture">Architecture</a> •
-    <a href="#-license--proprietary-notice">License</a>
+    <a href="#-project-architecture">Architecture</a>
   </p>
 
 </div>
@@ -103,11 +102,3 @@ merge/
 │   ├── store.tsx               # Global state with AsyncStorage persistence
 │   └── theme.ts                # Design tokens & dark/light color schemes
 ```
-
----
-
-## 📄 License & Proprietary Notice
-
-Copyright © 2025–present Kapil Raj. All rights reserved.
-
-This software and associated documentation files are proprietary and confidential. Unauthorized copying, modification, distribution, reverse engineering, or commercial exploitation of this software, in whole or in part, via any medium, is strictly prohibited without the prior written consent of the copyright holder.
